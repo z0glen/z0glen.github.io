@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Zach Bauer</title>
-		
+{% extends 'base.html' %}
+<head>
+{% block head %}
 	<style>
 		.jumbotron img {
 			display: block;
@@ -112,48 +110,15 @@
 			}
 		}
 	</style>
-
-		<meta charset="utf-8">
-  		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<style>
-		body {
-			font-family: "Lucida Console", Monaco, monospace;
-			padding: 20px;
-		}
-		.navbar-brand {
-			font-weight: bold;
-		}
-		</style>
-	</head>
-	<body>
-		
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>                        
-			  </button>
-			  <a class="navbar-brand" href="/">Zach Bauer</a>
-			</div>
-		  <div class="collapse navbar-collapse" id="myNavbar">
-			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="/bio"><span class="glyphicon glyphicon-user"></span> About Me</a></li>
-			  </ul>
-			</div>
-			</div>
-		</nav>
-		
+{% endblock %}
+</head>
+<body>
+{% block content %}
 	<section class="jumbotron">
 		<div class="container-fluid">
 			<div class="row">
 				<h2><span>Zach Bauer</span></h2>
-				<h4><span>Bioengineer, Developer, Transit Enthusiast</span></h4>
+				<h4><span>Bioengineer, Developer, Bostonian</span></h4>
 				<div class="wrapper">
 					<a class="btn btn-default" href="static/documents/bauer_resume.pdf" download="bauer_resume.pdf" role="button">Download Resume</a>
 					<a class="btn btn-default" href="mailto:zgbauer@gmail.com" role="button">Contact Me</a>
@@ -166,15 +131,5 @@
 			<p><span>Photo by Peter Rood, Wikimedia Commons</span></p>
 		</div>
 	</section>
-
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-		  ga('create', 'UA-96556672-1', 'auto');
-		  ga('send', 'pageview');
-		</script>
-	</body>
-</html>
+{% endblock %}
+</body>

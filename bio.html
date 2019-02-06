@@ -64,6 +64,7 @@
 			  padding: 20px;
 			  border-bottom-left-radius: 5px;
 			  border-bottom-right-radius: 5px;
+				padding-bottom: 1em;
 			}
 
 			p, span {
@@ -73,7 +74,7 @@
 			}
 
 			.line1 {
-			  color: #9CD9F0;
+			  color: #b8bbc1;
 			}
 
 			@-webkit-keyframes blink {
@@ -101,10 +102,14 @@
 			  top:-0.14em;
 			}
 			.text {
+				color: #38e016;
+				/* padding-top: 1em; */
+				padding-bottom: 1em;
+			}
+			.text p {
 				opacity: 0;
-				color: #9CD9F0;
-				padding-top: 10px;
-				padding-bottom: 10px;
+				padding-top: 1em;
+				text-indent: 2em;
 			}
 			.line::before {
 				content: "$ ";
@@ -125,7 +130,7 @@
 	<body>
 		<script>
 			var i = 0;
-			var txt = ["less about_me.txt", ""];
+			var txt = ["more about_me.txt", ""];
 			var speed = 100;
 			var visible = true;
 			var line = 1;
@@ -144,16 +149,31 @@
 					i++;
 					setTimeout(typeWriter, speed);
 				} else {
-					setTimeout(less, 750);
+					less();
 				}
 			}
 
 			function less() {
-				line = 2;
-				$(".text").css("opacity", 1);
-				$("#cursor1").css("opacity", 0);
-				$("#line2").css("opacity", 1);
-				$("#line1").css("color", "#b8bbc1");
+				setTimeout(function() {
+					$(".text #para1").css("opacity", 1);
+				}, 1000);
+				setTimeout(function() {
+					$(".text #para2").css("opacity", 1);
+				}, 2000);
+				setTimeout(function() {
+					$(".text #para3").css("opacity", 1);
+				}, 3000);
+				setTimeout(function() {
+					$("#cursor1").css("opacity", 0);
+					$("#line2").css("opacity", 1);
+					$("#line1").css("color", "#b8bbc1");
+					line = 2;
+				}, 4000);
+			}
+
+			function appear(num) {
+				elem = ".text #para" + num;
+				$(elem).css("opacity", 1);
 			}
 
 			function cursor() {
@@ -208,14 +228,14 @@
 				<div class="cursor" id="cursor1">_</div>
 			</div>
 			<div class="text">
-				<p>
+				<p id="para1">
 					I'm a fourth year student at Northeastern University, studying bioengineering
 					and computer science. I'm looking to get involved with projects that
 					combine those two worlds; I think that the intersection of science and
 					software has the potential to help people, and I want to be a part of it.
 					Currently, I'm looking for my third co-op (July-December 2019).
 				</p>
-				<p>
+				<p id="para2">
 					Previously, I've worked as a Software Engineering Intern for a medical
 					device company and a wearable device company. Both of these experiences
 					taught me about AGILE workflows, programming with a team, and large scale
@@ -225,7 +245,7 @@
 					directly with participants to collect data, and used machine learning
 					and data visualization to find patterns and draw conclusions in the data.
 				</p>
-				<p>
+				<p id="para3">
 					When I'm not in class or in the lab, I'm often competing at hackathons,
 					learning about new programming languages or techniques, or watching The Office.
 					I also compose music, help out with theater productions, and travel.

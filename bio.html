@@ -4,7 +4,7 @@
 		<title>Zach Bauer</title>
 
 		<style>
-			p {
+			/* p {
 				text-indent: 2.0em;
 				padding-left: 15px;
 				padding-right: 15px;
@@ -17,7 +17,7 @@
 			}
 			.container {
 				display: flex;
-			}
+			} */
 		</style>
 
 		<meta charset="utf-8">
@@ -29,15 +29,168 @@
 		<style>
 			body {
 				font-family: "Lucida Console", Monaco, monospace;
-				padding: 20px;
+				text-align: center;
+				background-color: #272727;
+				padding: 10px;
 			}
+
 			.navbar-brand {
 				font-weight: bold;
+			}
+
+			.fakeButtons {
+			  height: 12px;
+			  width: 12px;
+			  border-radius: 50%;
+			  border: 1px solid #000;
+			  position: relative;
+			  top: 4px;
+			  left: 8px;
+			  background-color: #ff3b47;
+			  border-color: #9d252b;
+			  display: inline-block;
+			}
+
+			.fakeMinimize {
+			  left: 11px;
+			  background-color: #ffc100;
+			  border-color: #9d802c;
+			}
+
+			.fakeZoom {
+			  left: 16px;
+			  background-color: #00d742;
+			  border-color: #049931;
+			}
+
+			.fakeMenu {
+			  width: 100%;
+			  box-sizing: border-box;
+			  height: 25px;
+			  background-color: #bbb;
+			  margin: 0 auto;
+			  border-top-right-radius: 5px;
+			  border-top-left-radius: 5px;
+			}
+
+			.fakeScreen {
+			  background-color: #151515;
+			  box-sizing: border-box;
+			  width: 100%;
+			  margin: 0 auto;
+			  padding: 20px;
+			  border-bottom-left-radius: 5px;
+			  border-bottom-right-radius: 5px;
+			}
+
+			p, span {
+			  position: relative;
+			  font-size: 1.25em;
+				text-decoration: none;
+			}
+
+			.line1 {
+			  color: #9CD9F0;
+			}
+
+			@-webkit-keyframes blink {
+				from, to { color: transparent; }
+				50% { color: green; }
+			}
+
+			@keyframes blink {
+				from, to { color: transparent; }
+				50% { color: green; }
+			}
+
+			.console-container {
+			  display:block;
+			  color:white;
+			  top:0;
+			  bottom:0;
+			  left:0;
+			  right:0;
+			  margin:auto;
+			}
+			.cursor {
+			   display:inline-block;
+			  position:relative;
+			  top:-0.14em;
+			}
+			.text {
+				opacity: 0;
+				color: #9CD9F0;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.line::before {
+				content: "$ ";
+			}
+			.line2, #cursor2 {
+				opacity: 0;
+			}
+			.line2 {
+				color: #b8bbc1;
+			}
+			.terminal {
+				max-width: 900px;
+				display: inline-block;
+				text-align: left;
 			}
 		</style>
 	</head>
 	<body>
+		<script>
+			var i = 0;
+			var txt = ["less about_me.txt", ""];
+			var speed = 100;
+			var visible = true;
+			var line = 1;
 
+			function start() {
+				setTimeout(typeWriter, 750);
+				cursor();
+			}
+
+			function typeWriter() {
+				currTxt = txt[line-1];
+				if (i < currTxt.length) {
+					curr = document.getElementById("line1").innerHTML;
+					n = [currTxt.slice(0, i+1), ].join('');
+					document.getElementById("line1").innerHTML = n;
+					i++;
+					setTimeout(typeWriter, speed);
+				} else {
+					setTimeout(less, 750);
+				}
+			}
+
+			function less() {
+				line = 2;
+				$(".text").css("opacity", 1);
+				$("#cursor1").css("opacity", 0);
+				$("#line2").css("opacity", 1);
+				$("#line1").css("color", "#b8bbc1");
+			}
+
+			function cursor() {
+				var currId;
+				if (line === 1) {
+					currId = "#cursor1";
+				} else {
+					currId = "#cursor2";
+				}
+				if (visible === true) {
+					$(currId).css("opacity", 1);
+					visible = false;
+				} else {
+					$(currId).css("opacity", 0);
+					visible = true;
+				}
+				setTimeout(cursor, 600);
+			}
+			window.onload = start;
+		</script>
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 			<div class="navbar-header">
@@ -60,30 +213,45 @@
 		</nav>
 
 <body>
-	<div class="flex-container">
-		<div class="text">
-			<p>
-				I'm a fourth year student at Northeastern University, studying bioengineering
-				and computer science. I'm looking to get involved with projects that
-				combine those two worlds; I think that the intersection of science and
-				software has the potential to help people, and I want to be a part of it.
-				Currently, I'm looking for my third co-op (July-December 2019).
-			</p>
-			<p>
-				Previously, I've worked as a Software Engineering Intern for a medical
-				device company and a wearable device company. Both of these experiences
-				taught me about AGILE workflows, programming with a team, and large scale
-				software architecture and code management. I also worked with a team
-				doing reasearch in the affective and cognitive sciences, where I
-				designed and implemented experiments for cognitive assessment, worked
-				directly with participants to collect data, and used machine learning
-				and data visualization to find patterns and draw conclusions in the data.
-			</p>
-			<p>
-				When I'm not in class or in the lab, I'm often competing at hackathons,
-				learning about new programming languages or techniques, or watching The Office.
-				I also compose music, help out with theater productions, and travel.
-			</p>
+	<div class="terminal">
+		<div class="fakeMenu">
+			<div class="fakeButtons fakeClose"></div>
+			<div class="fakeButtons fakeMinimize"></div>
+			<div class="fakeButtons fakeZoom"></div>
+		</div>
+		<div class="fakeScreen">
+			<div class="console-container">
+				<span id="line1" class="line line1"></span>
+				<div class="cursor" id="cursor1">_</div>
+			</div>
+			<div class="text">
+				<p>
+					I'm a fourth year student at Northeastern University, studying bioengineering
+					and computer science. I'm looking to get involved with projects that
+					combine those two worlds; I think that the intersection of science and
+					software has the potential to help people, and I want to be a part of it.
+					Currently, I'm looking for my third co-op (July-December 2019).
+				</p>
+				<p>
+					Previously, I've worked as a Software Engineering Intern for a medical
+					device company and a wearable device company. Both of these experiences
+					taught me about AGILE workflows, programming with a team, and large scale
+					software architecture and code management. I also worked with a team
+					doing reasearch in the affective and cognitive sciences, where I
+					designed and implemented experiments for cognitive assessment, worked
+					directly with participants to collect data, and used machine learning
+					and data visualization to find patterns and draw conclusions in the data.
+				</p>
+				<p>
+					When I'm not in class or in the lab, I'm often competing at hackathons,
+					learning about new programming languages or techniques, or watching The Office.
+					I also compose music, help out with theater productions, and travel.
+				</p>
+			</div>
+			<div class="console-container">
+				<span id="line2" class="line line2"></span>
+				<div class="cursor" id="cursor2">_</div>
+			</div>
 		</div>
 	</div>
 </body>
